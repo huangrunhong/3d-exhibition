@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="3d-exhibition">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

@@ -6,7 +6,7 @@ const Home = () => {
     <div className="container">
       <h2>Herzlich Willkomen zu</h2>
       <img src={tum_additive} alt="tum_additive" />
-      <a href="/exhibition">ENTDECKEN</a>
+      <a href="./exhibition">ENTDECKEN</a>
     </div>
   );
 };
