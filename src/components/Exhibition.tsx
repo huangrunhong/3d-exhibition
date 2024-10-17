@@ -1,10 +1,11 @@
-import { Engine } from "@babylonjs/core/Engines/engine";
-import { Scene } from "@babylonjs/core/scene";
-import { Vector3 } from "@babylonjs/core/Maths/math";
 import {
   appendSceneAsync,
+  Color4,
+  Engine,
   FreeCamera,
   HemisphericLight,
+  Scene,
+  Vector3,
 } from "@babylonjs/core";
 import { useEffect, useRef } from "react";
 import * as GUI from "@babylonjs/gui";
@@ -40,8 +41,12 @@ const Exhibition = () => {
 
       const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
       light.intensity = 0.7;
-      const manager = new GUI.GUI3DManager(scene);
+      // Enable VR
+      await scene.createDefaultXRExperienceAsync();
 
+      scene.clearColor = new Color4(1, 1, 1);
+
+      const manager = new GUI.GUI3DManager(scene);
       const button = (
         positionX: number,
         positionY: number,
@@ -64,32 +69,35 @@ const Exhibition = () => {
         return button;
       };
 
-      const button1 = button(1, 1.5, -1.5);
-
-      if (button1.node) {
-        button1.node.rotation = new Vector3(0, -Math.PI / 2, 0);
-      }
-      const button2 = button(-10, 1.5, 3.15);
-
       await appendSceneAsync("src/assets/scene.glb", scene);
 
-      const animations = scene.animationGroups;
+      scene.animationGroups.forEach((animation) => {
+        if (animation.name === "Door_entrance") {
+          animation.stop();
 
-      if (animations.length > 0) {
-        const animationEntrance = animations[0];
-        animationEntrance.stop();
-        button1.onPointerClickObservable.add(function () {
-          animationEntrance.start();
-          animationEntrance.speedRatio = 2;
-        });
+          const button1 = button(1, 1.5, -1.5);
 
-        const animationSocialSpace = animations[1];
-        button2.onPointerClickObservable.add(() => {
-          animationSocialSpace.start();
-          animationSocialSpace.speedRatio = 2;
-        });
-        // animationSocialSpace.start();
-      }
+          if (button1.node) {
+            button1.node.rotation = new Vector3(0, -Math.PI / 2, 0);
+          }
+
+          button1.onPointerClickObservable.add(function () {
+            animation.start();
+            animation.speedRatio = 2;
+          });
+        }
+
+        if (animation.name === "Door_social space") {
+          animation.stop();
+
+          const button2 = button(-10, 1.5, 3.15);
+
+          button2.onPointerClickObservable.add(function () {
+            animation.start();
+            animation.speedRatio = 2;
+          });
+        }
+      });
 
       return scene;
     };

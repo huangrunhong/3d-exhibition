@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loading from "./components/Loading"; // 导入Loading组件
+
 import Home from "./components/Home";
-import "./App.css";
 import Exhibition from "./components/Exhibition";
+
+import "./App.css";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -20,16 +21,6 @@ function App() {
       setPassword("");
     }
   };
-
-  //过度动画;
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 4000);
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   return (
     <>
