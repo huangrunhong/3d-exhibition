@@ -69,7 +69,7 @@ const Exhibition = () => {
         return button;
       };
 
-      await appendSceneAsync("src/assets/scene.glb", scene);
+      await appendSceneAsync("/3d-exhibition/scene.glb", scene);
 
       scene.animationGroups.forEach((animation) => {
         if (animation.name === "Door_entrance") {
