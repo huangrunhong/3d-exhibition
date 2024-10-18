@@ -34,10 +34,16 @@ const Exhibition = () => {
 
     const createScene = async () => {
       const scene = new Scene(engine);
-      const camera = new FreeCamera("camera1", new Vector3(13, 1.5, 0), scene);
+      const camera = new FreeCamera("camera1", new Vector3(13, 1.6, 0), scene);
       camera.fov = 0.6;
-      camera.setTarget(new Vector3(0, 1.5, 0));
+      camera.setTarget(new Vector3(0, 1.6, 0));
       camera.attachControl(canvas.current, true);
+      camera.speed = 0.8;
+
+      // scene.onBeforeRenderObservable.add(() => {
+      //   camera.position.y = 1.6;
+      //   camera.rotation.x = 0;
+      // });
 
       const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
       light.intensity = 0.7;
@@ -104,7 +110,10 @@ const Exhibition = () => {
 
     const renderScene = async () => {
       const scene = await createScene();
-      engine.runRenderLoop(() => scene.render());
+      engine.runRenderLoop(() => {
+        scene.activeCamera!.position.y = 1.6;
+        scene.render();
+      });
     };
 
     renderScene();
