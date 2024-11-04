@@ -119,17 +119,6 @@ const createScene = async (canvas: HTMLCanvasElement) => {
   scene.animationGroups.forEach((animation) => {
     const manager = new GUI.GUI3DManager(scene);
     const material = new StandardMaterial("buttonMaterial", scene);
-    // const buttonSMaterial = new StandardMaterial("buttonMaterial", scene);
-    // buttonSMaterial.diffuseColor = new Color3(1, 0, 0);
-    // buttonSMaterial.alpha = 1;
-    const button3 = createButton(
-      -2.75,
-      1.5,
-      -0.6,
-      manager,
-      material,
-      "DEPLORE"
-    );
 
     if (animation.name === "Door_entrance") {
       animation.stop();
