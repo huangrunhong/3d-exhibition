@@ -1,0 +1,59 @@
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+@mixin gap($unit: 1) {
+  .gap-#{$unit} {
+    gap: $unit * 0.25rem;
+  }
+
+  .gap-x-#{$unit} {
+    column-gap: $unit * 0.25rem;
+  }
+
+  .gap-y-#{$unit} {
+    row-gap: $unit * 0.25rem;
+  }
+}
+
+@mixin justify-content($key, $value: $key) {
+  .justify-#{$key} {
+    justify-content: #{$value};
+  }
+}
+
+@mixin align-items($key, $value: $key) {
+  .items-#{$key} {
+    align-items: #{$value};
+  }
+}
+
+@include align-items(center);
+@include align-items(baseline);
+@include align-items(start, flex-start);
+@include align-items(end, flex-end);
+
+@include justify-content(center);
+@include justify-content(around, space-around);
+@include justify-content(evenly, space-evenly);
+@include justify-content(between, space-between);
+@include justify-content(start, flex-start);
+@include justify-content(end, flex-end);
+
+@include gap(1);
+@include gap(2);
+@include gap(3);
+@include gap(4);

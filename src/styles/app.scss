@@ -1,0 +1,52 @@
+@import "normalize";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  --tum-blue-brand: #3070b3;
+  --tum-blue-dark: #072140;
+  --tum-blue-dark-1: #0a2d57;
+  --tum-blue-dark-2: #0e396e;
+  --tum-blue-dark-3: #114584;
+  --tum-blue-dark-4: #14519a;
+  --tum-blue-dark-5: #165db1;
+  --tum-blue-light: #5e94d4;
+  --tum-blue-light-1: #9abce4;
+  --tum-blue-light-2: #c2d7ef;
+  --tum-blue-light-3: #d7e4f4;
+  --tum-blue-light-4: #e3eefa;
+  --tum-blue-light-5: #f0f5fa;
+  --tum-grey-1: #20252a;
+  --tum-grey-2: #333a41;
+  --tum-grey-3: #475058;
+  --tum-grey-4: #6a757e;
+  --tum-grey-5: #abb5be;
+  --tum-grey-6: #cdd4db;
+  --tum-grey-7: #dde2e6;
+  --tum-grey-8: #e8ecef;
+  --tum-grey-9: #f8f9fa;
+  --black: #000000;
+  --white: #ffffff;
+
+  --foreground: var(--tum-blue-dark);
+  --background: var(--white);
+  --background-secondary: var(--tum-grey-8);
+  --border: var(--tum-grey-6);
+  --border-focus: var(--tum-blue-light);
+  --outline: var(--tum-blue-light-2);
+  --button-background: var(--tum-blue-brand);
+  --button-background-hover: var(--tum-blue-dark-4);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: var(--foreground);
+  background-color: var(--background);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+@import "form";
+@import "flex";
+@import "layout";
+@import "spacing";

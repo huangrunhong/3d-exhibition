@@ -1,0 +1,81 @@
+@mixin padding-variant($id: 1) {
+  .p-#{$id} {
+    padding: $id * 0.25rem;
+  }
+
+  .pb-#{$id} {
+    padding-bottom: $id * 0.25rem;
+  }
+
+  .pl-#{$id} {
+    padding-left: $id * 0.25rem;
+  }
+
+  .pr-#{$id} {
+    padding-right: $id * 0.25rem;
+  }
+
+  .pt-#{$id} {
+    padding-top: $id * 0.25rem;
+  }
+
+  .px-#{$id} {
+    padding-left: $id * 0.25rem;
+    padding-right: $id * 0.25rem;
+  }
+
+  .py-#{$id} {
+    padding-bottom: $id * 0.25rem;
+    padding-top: $id * 0.25rem;
+  }
+}
+
+@mixin margin-variant($id: 1) {
+  .m-#{$id} {
+    margin: $id * 0.25rem;
+  }
+
+  .mb-#{$id} {
+    margin-bottom: $id * 0.25rem;
+  }
+
+  .ml-#{$id} {
+    margin-left: $id * 0.25rem;
+  }
+
+  .mr-#{$id} {
+    margin-right: $id * 0.25rem;
+  }
+
+  .mt-#{$id} {
+    margin-top: $id * 0.25rem;
+  }
+
+  .mx-#{$id} {
+    margin-left: $id * 0.25rem;
+    margin-right: $id * 0.25rem;
+  }
+
+  .my-#{$id} {
+    margin-bottom: $id * 0.25rem;
+    margin-top: $id * 0.25rem;
+  }
+}
+
+@include margin-variant(1);
+@include margin-variant(2);
+@include margin-variant(3);
+@include margin-variant(4);
+@include margin-variant(6);
+@include margin-variant(8);
+@include margin-variant(10);
+@include margin-variant(12);
+
+@include padding-variant(1);
+@include padding-variant(2);
+@include padding-variant(3);
+@include padding-variant(4);
+@include padding-variant(6);
+@include padding-variant(8);
+@include padding-variant(10);
+@include padding-variant(12);
