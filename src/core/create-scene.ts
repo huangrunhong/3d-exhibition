@@ -5,7 +5,6 @@ import {
   HDRCubeTexture,
   HemisphericLight,
   Scene,
-  StandardMaterial,
   Vector3,
 } from "@babylonjs/core";
 
@@ -50,7 +49,6 @@ const createButton = (
   positionY: number,
   positionZ: number,
   manager: GUI.GUI3DManager,
-  material: StandardMaterial,
   text: string
 ) => {
   const button = new GUI.Button3D("reset", {
@@ -62,8 +60,6 @@ const createButton = (
   button.position.x = positionX;
   button.position.y = positionY;
   button.position.z = positionZ;
-  // material.alpha = 0.8;
-  // material.diffuseColor = new Color3(1, 0, 0); //red
 
   const content = new GUI.TextBlock();
   content.text = text;
@@ -83,6 +79,9 @@ const createScene = async (canvas: HTMLCanvasElement) => {
 
   const scene = new Scene(engine);
 
+  // Enable VR
+  await scene.createDefaultXRExperienceAsync();
+
   const hrd = new HDRCubeTexture(
     "/3d-exhibition/berlin.hdr",
     scene,
@@ -100,7 +99,6 @@ const createScene = async (canvas: HTMLCanvasElement) => {
   setSceneGravity(scene);
   createLight(scene);
   createCamera(scene, canvas);
-  // scene.clearColor = new Color4(0.5, 0.8, 1, 1);
 
   await appendSceneAsync("/3d-exhibition/scene.glb", scene);
 
@@ -118,12 +116,11 @@ const createScene = async (canvas: HTMLCanvasElement) => {
 
   scene.animationGroups.forEach((animation) => {
     const manager = new GUI.GUI3DManager(scene);
-    const material = new StandardMaterial("buttonMaterial", scene);
 
     if (animation.name === "Door_entrance") {
       animation.stop();
 
-      const button1 = createButton(1, 1.5, -1.5, manager, material, "OPEN");
+      const button1 = createButton(1, 1.5, -1.5, manager, "OPEN");
 
       if (button1.node) {
         button1.node.rotation = new Vector3(0, -Math.PI / 2, 0);
@@ -138,7 +135,7 @@ const createScene = async (canvas: HTMLCanvasElement) => {
     if (animation.name === "Door_social space") {
       animation.stop();
 
-      const button2 = createButton(-10, 1.5, 3.15, manager, material, "OPEN");
+      const button2 = createButton(-10, 1.5, 3.15, manager, "OPEN");
 
       button2.onPointerClickObservable.add(function () {
         animation.start();
